@@ -43,6 +43,13 @@ func LoadOptions() {
 		General: GeneralOptions{
 			ServerURL: fmt.Sprintf("http://%s:%d", util.SystemHostname(), routerPort()),
 		},
+		Modules: ModuleOptions{
+			Weather: ModuleWeatherOptions{
+				Latitude:  49.2829766,
+				Longitude: -123.1204358,
+				APIKey:    os.Getenv("OW_API_KEY"),
+			},
+		},
 	}
 
 	if !FileExists(path.Join(Directories.Data, "furdl.conf")) {

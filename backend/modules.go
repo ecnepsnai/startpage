@@ -2,6 +2,7 @@ package startpage
 
 import (
 	"path"
+	"sync"
 	"time"
 
 	"github.com/ecnepsnai/startpage/mods/medailydeal"
@@ -54,26 +55,40 @@ func ModuleRefresh() error {
 	start := time.Now()
 	log.Debug("Starting module refresh")
 
-	if err := moduleMEDailyDeal.Refresh(); err != nil {
-		log.PError("Error refreshing module", map[string]interface{}{
-			"module": "potd",
-			"error":  err.Error(),
-		})
-	}
+	wg := sync.WaitGroup{}
+	wg.Add(3)
 
-	if err := modulePOTD.Refresh(); err != nil {
-		log.PError("Error refreshing module", map[string]interface{}{
-			"module": "potd",
-			"error":  err.Error(),
-		})
-	}
+	go func() {
+		defer wg.Done()
+		if err := moduleMEDailyDeal.Refresh(); err != nil {
+			log.PError("Error refreshing module", map[string]interface{}{
+				"module": "potd",
+				"error":  err.Error(),
+			})
+		}
+	}()
 
-	if err := moduleWeather.Refresh(); err != nil {
-		log.PError("Error refreshing module", map[string]interface{}{
-			"module": "potd",
-			"error":  err.Error(),
-		})
-	}
+	go func() {
+		defer wg.Done()
+		if err := modulePOTD.Refresh(); err != nil {
+			log.PError("Error refreshing module", map[string]interface{}{
+				"module": "potd",
+				"error":  err.Error(),
+			})
+		}
+	}()
+
+	go func() {
+		defer wg.Done()
+		if err := moduleWeather.Refresh(); err != nil {
+			log.PError("Error refreshing module", map[string]interface{}{
+				"module": "potd",
+				"error":  err.Error(),
+			})
+		}
+	}()
+
+	wg.Wait()
 
 	log.Debug("Module refresh completed in %s", time.Since(start))
 	return nil

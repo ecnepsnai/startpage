@@ -14,6 +14,7 @@ func Start() {
 	LoadOptions()
 	ModuleSetup()
 	ModuleRefresh()
+	StartCron()
 	StartRouter()
 }
 
