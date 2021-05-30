@@ -3,4 +3,3 @@ cmd/startpage/*
 data/
 logs/
 /startpage
-cbgen_*.go
