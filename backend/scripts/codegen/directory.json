@@ -7,6 +7,12 @@
     {
         "name": "Data",
         "dir_name": "data",
-        "is_data": true
+        "is_data": true,
+        "subdirs": [
+            {
+                "name": "Bookmarks",
+                "dir_name": "bookmarks"
+            }
+        ]
     }
 ]

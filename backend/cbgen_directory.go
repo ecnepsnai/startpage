@@ -27,6 +27,8 @@ type apiDirectories struct {
 
 	Data string
 
+	Bookmarks string
+
 	Logs string
 }
 
@@ -39,10 +41,14 @@ func fsSetup() {
 
 		Data: path.Join(dataDirectory, "data"),
 
+		Bookmarks: path.Join(dataDirectory, "data", "bookmarks"),
+
 		Logs: path.Join(dataDirectory, "logs"),
 	}
 
 	MakeDirectoryIfNotExist(Directories.Data)
+
+	MakeDirectoryIfNotExist(Directories.Bookmarks)
 
 	MakeDirectoryIfNotExist(Directories.Logs)
 

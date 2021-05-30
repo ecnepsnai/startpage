@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 cd scripts/codegen
 cbgen -n startpage -v dev

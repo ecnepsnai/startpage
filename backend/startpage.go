@@ -12,6 +12,7 @@ func Start() {
 	fsSetup()
 	SetupLogtic()
 	LoadOptions()
+	dataStoreSetup()
 	ModuleSetup()
 	ModuleRefresh()
 	StartCron()
@@ -25,4 +26,5 @@ func SetupLogtic() {
 
 func Stop() {
 	ModuleTeardown()
+	dataStoreTeardown()
 }
