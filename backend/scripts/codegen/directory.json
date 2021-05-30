@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Logs",
+        "dir_name": "logs",
+        "is_data": true
+    },
+    {
+        "name": "Data",
+        "dir_name": "data",
+        "is_data": true
+    }
+]

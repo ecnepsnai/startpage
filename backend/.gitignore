@@ -1,0 +1,6 @@
+cmd/startpage/*
+!cmd/startpage/*.go
+data/
+logs/
+/startpage
+cbgen_*.go
